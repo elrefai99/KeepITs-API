@@ -13,10 +13,10 @@ function getLocalIP(): any {
 }
 
 export const mongoDBConnection = async (retries = 5): Promise<void> => {
-     const uri = process.env.MONGO_URI as string
+     const uri = process.env.DATABASE_URL as string
      try {
           await connect(uri, { serverSelectionTimeoutMS: 5000 });
-          console.log('✅ Success connected to EGYStay Database')
+          console.log('✅ Success connected to KeepITs Database')
           console.log('ɪᴘ My IP Address:', getLocalIP());
      } catch (err) {
           if (retries > 0) {
