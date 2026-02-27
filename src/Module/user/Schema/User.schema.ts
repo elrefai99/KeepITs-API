@@ -33,7 +33,6 @@ const userSchema = new Schema<IUser>({
      },
      username: {
           type: String,
-          required: true,
           trim: true,
           index: true,
           toLowerCase: true,
@@ -46,14 +45,25 @@ const userSchema = new Schema<IUser>({
 }, {
      timestamps: true,
 })
-userSchema.pre("save", async function (next: any) {
-     // Only hash if password was modified (or is new)
-     if (!this.isModified("password")) return next();
+userSchema.pre("save", async function () {
+     // Hash password only if modified
+     if (this.isModified("password")) {
+          const salt = await bcrypt.genSalt(10);
+          this.password = await bcrypt.hash(this.password, salt);
+     }
 
-     const salt = await bcrypt.genSalt(10);
-     this.password = await bcrypt.hash(this.password, salt);
+     // Generate username only on new document
+     if (this.isNew) {
+          const base = this.name
+               .toLowerCase()
+               .trim()
+               .split(" ")
+               .join("-")
+               .split("@")[0];
 
-     next();
+          const unique = uuidv4().split("-")[0]; // e.g. "a1b2c3d4"
+          this.username = `${base}-${unique}`;  // e.g. "john-doe-a1b2c3d4"
+     }
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {

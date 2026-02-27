@@ -1,8 +1,13 @@
 import './core/dotenv.core'
 import express, { Application } from 'express'
 import { mongoDBConnection } from './core/mongoDB.core';
+import appConfig from './app.config';
+import appModule from './app.module';
 
 const app: Application = express()
+
+appConfig(app)
+appModule(app);
 
 const main = async () => {
      try {
