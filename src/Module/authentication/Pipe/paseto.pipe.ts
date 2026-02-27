@@ -10,7 +10,6 @@ export const token_PASETO = async (payload: any, type: TokenType, expiresIn?: st
                const token = await V4.sign(
                     {
                          data: { user_id: payload.data.user_id },
-                         role: payload.role,
                          site: "KeepITs",
                          token_version: 2,
                          access_device: payload.access_device
@@ -24,7 +23,6 @@ export const token_PASETO = async (payload: any, type: TokenType, expiresIn?: st
                const tokenRefresh = await V4.sign(
                     {
                          data: { user_id: payload.data.user_id },
-                         role: payload.role,
                          site: "KeepITs",
                          token_version: 2,
                          access_device: payload.access_device
@@ -39,7 +37,6 @@ export const token_PASETO = async (payload: any, type: TokenType, expiresIn?: st
                const tokenPending = await V4.sign(
                     {
                          data: { user_id: payload.data.user_id },
-                         role: payload.role,
                          site: "KeepITs",
                          token_version: 2,
                          access_device: payload.access_device
@@ -53,7 +50,6 @@ export const token_PASETO = async (payload: any, type: TokenType, expiresIn?: st
                const tokenForgetPassword = await V4.sign(
                     {
                          data: { user_id: payload.data.user_id },
-                         role: payload.role,
                          site: "KeepITs",
                          token_version: 2,
                          access_device: payload.access_device
