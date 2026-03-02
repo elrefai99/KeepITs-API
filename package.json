@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/Queue/worker.ts\"",
+    "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/kafka/kafka.ts\"",
     "dev:windows": "nodemon",
     "build": "tsc",
     "start": "concurrently \"node ./dist/app.js\" \"node ./dist/Queue/worker.js\"",
@@ -22,6 +22,7 @@
   "description": "",
   "dependencies": {
     "@types/cookie-parser": "^1.4.10",
+    "@types/kafkajs": "^1.9.0",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.9.0",
     "cookie-parser": "^1.4.7",
@@ -30,6 +31,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
+    "kafkajs": "^2.2.4",
     "mongoose": "^9.2.3",
     "morgan": "^1.10.1",
     "nodemailer": "^8.0.1",
