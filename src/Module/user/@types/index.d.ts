@@ -11,3 +11,14 @@ export interface IUser extends Document {
 
      comparePassword(candidatePassword: string): Promise<boolean>;
 }
+export interface UploadImageResult {
+     url: string;
+     path: string;
+};
+
+export interface UploadImageOptions {
+     folder: string;
+     publicId?: string;
+     overwrite?: boolean;
+     tags?: string[];
+};
