@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/kafka/kafka.ts\"",
+    "dev": "concurrently \"NODE_ENV=development nodemon -L\"",
     "dev:windows": "nodemon",
     "build": "tsc",
     "start": "concurrently \"node ./dist/app.js\" \"node ./dist/Queue/worker.js\"",

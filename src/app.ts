@@ -18,7 +18,7 @@ const main = async () => {
                kafka
           ]);
           app.listen(port, () => {
-               console.log("🌐 Server is running on:", process.env.NODE_ENV === "development" ? String(process.env.SITE_API_Local_URL) : String(process.env.SITE_API_URL))
+               console.log("🌐 Server is running on:", String(process.env.API_ENDPOINT_URL))
           });
      }
      catch (err) {
