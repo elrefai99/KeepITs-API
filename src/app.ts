@@ -3,6 +3,7 @@ import express, { Application } from 'express'
 import { mongoDBConnection } from './core/mongoDB.core';
 import appConfig from './app.config';
 import appModule from './app.module';
+import { kafka } from './core/kafka.core';
 
 const app: Application = express()
 
@@ -14,9 +15,10 @@ const main = async () => {
           const port: number = Number(process.env.PORT) || 9999
           await Promise.all([
                mongoDBConnection(),
+               kafka
           ]);
           app.listen(port, () => {
-               console.log("🌐 Server is running on:", process.env.NODE_ENV === "development" ? String(process.env.SITE_API_Local_URL) : String(process.env.SITE_API_URL))
+               console.log("🌐 Server is running on:", String(process.env.API_ENDPOINT_URL))
           });
      }
      catch (err) {

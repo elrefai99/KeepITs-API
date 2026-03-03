@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/Queue/worker.ts\"",
+    "dev": "concurrently \"NODE_ENV=development nodemon -L\"",
     "dev:windows": "nodemon",
     "build": "tsc",
     "start": "concurrently \"node ./dist/app.js\" \"node ./dist/Queue/worker.js\"",
@@ -22,6 +22,7 @@
   "description": "",
   "dependencies": {
     "@types/cookie-parser": "^1.4.10",
+    "@types/kafkajs": "^1.9.0",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.9.0",
     "cookie-parser": "^1.4.7",
@@ -30,6 +31,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
+    "kafkajs": "^2.2.4",
     "mongoose": "^9.2.3",
     "morgan": "^1.10.1",
     "nodemailer": "^8.0.1",
@@ -39,6 +41,7 @@
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@agendajs/mongo-backend": "^4.0.0",
     "@mohamed-elrefai/tsconfigs": "^1.0.2",
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
@@ -49,14 +52,17 @@
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.10",
     "@types/node": "^25.3.2",
+    "@types/node-cache": "^4.2.5",
     "@types/nodemailer": "^7.0.11",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^11.0.0",
+    "agenda": "^6.2.3",
     "bullmq": "^5.70.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "concurrently": "^9.2.1",
+    "node-cache": "^5.1.2",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
