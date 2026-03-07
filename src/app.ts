@@ -15,7 +15,7 @@ const main = async () => {
           const port: number = Number(process.env.PORT) || 9999
           await Promise.all([
                mongoDBConnection(),
-               kafka
+               kafka,
           ]);
           app.listen(port, () => {
                console.log("🌐 Server is running on:", String(process.env.API_ENDPOINT_URL))

@@ -1,13 +1,14 @@
 import { v2 as cloudinary } from "cloudinary";
+import { UploadImageOptions, UploadImageResult } from "../@types";
 
 let isCloudinaryConfigured = false;
 
 function ensureCloudinaryConfigured() {
      if (isCloudinaryConfigured) return;
 
-     const cloudName: string = process.env.CLOUDINARY_CLOUD_NAME;
-     const apiKey: string = process.env.CLOUDINARY_API_KEY;
-     const apiSecret: string = process.env.CLOUDINARY_API_SECRET;
+     const cloudName: string = process.env.CLOUDINARY_CLOUD_NAME as string;
+     const apiKey: string = process.env.CLOUDINARY_API_KEY as string;
+     const apiSecret: string = process.env.CLOUDINARY_API_SECRET as string;
 
      if (!cloudName || !apiKey || !apiSecret) {
           throw new Error(
@@ -24,18 +25,6 @@ function ensureCloudinaryConfigured() {
 
      isCloudinaryConfigured = true;
 }
-
-export interface UploadImageResult = {
-     url: string;
-     path: string;
-};
-
-interface UploadImageOptions = {
-     folder: string;
-     publicId?: string;
-     overwrite?: boolean;
-     tags?: string[];
-};
 
 function uploadBuffer(buffer: Buffer, options: UploadImageOptions): Promise<UploadImageResult> {
      return new Promise((resolve, reject) => {

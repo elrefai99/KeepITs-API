@@ -51,7 +51,7 @@ export default (app: Application) => {
           })
      );
 
-     app.use("/v0/public", express.static("public"));
+     app.use("/v0/upload", express.static("uploads"));
      app.use(cors(corsOptions));
      app.use(cookieParser());
      app.use(morgan(process.env.NODE_ENV === "development" ? "dev" : "combined"));
