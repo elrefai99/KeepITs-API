@@ -6,6 +6,7 @@
     "lint": "eslint .",
     "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/Queue/index.ts\"",
     "dev:local": "concurrently \"nodemon -L\" \"npx ts-node ./src/Queue/index.ts\"",
+    "seed": "npx ts-node ./seed/index.ts",
     "build": "tsc",
     "start": "concurrently \"node ./dist/app.js\" \"node ./dist/Queue/worker.js\"",
     "test": "jest --detectOpenHandles --runInBand",

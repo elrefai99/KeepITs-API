@@ -4,3 +4,8 @@ export enum EUserStatus {
      BANNED = "BANNED",
      DELETED = "DELETED",
 }
+
+export enum EUserRole {
+     ADMIN = "ADMIN",
+     USER = "USER",
+}

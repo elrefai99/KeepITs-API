@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IUser } from "../@types";
-import { EUserStatus } from "../../../Common/enum";
+import { EUserRole, EUserStatus } from "../../../Common/enum";
 import { v4 as uuidv4 } from "uuid"
 import bcrypt from "bcryptjs";
 
@@ -30,6 +30,11 @@ const userSchema = new Schema<IUser>({
      },
      last_login: {
           type: String,
+     },
+     role: {
+          type: String,
+          enum: EUserRole,
+          default: EUserRole.USER
      },
      username: {
           type: String,
