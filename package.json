@@ -39,7 +39,8 @@
     "paseto": "^3.1.4",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@agendajs/mongo-backend": "^4.0.0",
@@ -66,6 +67,8 @@
     "concurrently": "^9.2.1",
     "node-cache": "^5.1.2",
     "nodemon": "^3.1.14",
+    "reflect-metadata": "^0.2.2",
+    "socket.io": "^4.8.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

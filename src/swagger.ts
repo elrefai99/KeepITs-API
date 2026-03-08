@@ -1,7 +1,6 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
-import path from "node:path";
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
@@ -270,52 +269,5 @@ const swaggerUiOptions = {
 
 export function setupSwagger(app: Express): void {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions));
-
-  // Main documentation
-  app.get('/documentation', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/documentation.html'));
-  });
-
-  // API documentation files
-  app.get('/api/documentation', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-endpoints.html'));
-  });
-
-  app.get('/api/documentation/auth', (_req, res) => {
-    console.log("adada");
-
-    res.sendFile(path.join(__dirname, '../docs/html/api-auth.html'));
-  });
-
-  app.get('/api/documentation/ads', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-ads.html'));
-  });
-
-  app.get('/api/documentation/booking', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-booking.html'));
-  });
-
-  app.get('/api/documentation/user', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-user.html'));
-  });
-
-  app.get('/api/documentation/payment', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-payment.html'));
-  });
-
-  app.get('/api/documentation/chat', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-chat.html'));
-  });
-
-  app.get('/api/documentation/misc', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-misc.html'));
-  });
-
-  app.get('/api/documentation/admin', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../docs/html/api-admin.html'));
-  });
-
   console.log("📄 Swagger docs endpoints available at:", process.env.NODE_ENV === "development" ? `${String(process.env.SITE_API_Local_URL)}/api-docs` : `${String(process.env.SITE_API_URL)}/api-docs`);
-  console.log("📚 Documentation available at:", process.env.NODE_ENV === "development" ? `${String(process.env.SITE_API_Local_URL)}/documentation` : `${String(process.env.SITE_API_URL)}/documentation`);
-  console.log("📖 API Documentation available at:", process.env.NODE_ENV === "development" ? `${String(process.env.SITE_API_Local_URL)}/api/documentation` : `${String(process.env.SITE_API_URL)}/api/documentation`);
 }
