@@ -3,13 +3,15 @@ import { asyncHandler } from "../../../Common/decorators/api-requesthandler";
 import ServerError from "../../../Common/decorators/api-errors";
 import { createPublicKey } from "node:crypto"
 import { V4 } from "paseto"
-import { UserModel } from "../../user/Schema/User.schema"
+import { UserModel } from "../Schema/User.schema"
 import { EUserStatus } from "../../../Common/enum"
 import cache from "../../../core/local-cache.core";
 
-export const profilePipe: RequestHandler = asyncHandler(
+export const profileGuard: RequestHandler = asyncHandler(
      async (req: Request, _res: Response, next: NextFunction) => {
-          const token: string | undefined = req.cookies.access_token
+          const authHeader = req.headers.authorization;
+          const tokenFromAuthHeader = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
+          const token: string | undefined = req.cookies.__ESAA || tokenFromAuthHeader
           if (!token) {
                next(new ServerError("Access token not found", 401))
                return

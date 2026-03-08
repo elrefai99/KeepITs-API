@@ -14,7 +14,7 @@ const destination = (req: Request, _file: Express.Multer.File, cb: any) => {
      const baseReq = req.baseUrl;
      const isUser = baseReq.includes("user");
 
-     const pathFile = path.join(__dirname, "../../", "uploads", isUser ? "users" : "");
+     const pathFile = path.join(__dirname, "../../../", "uploads", isUser ? "users" : "");
      cb(null, pathFile);
 }
 

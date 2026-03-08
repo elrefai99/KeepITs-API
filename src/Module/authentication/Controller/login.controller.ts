@@ -15,8 +15,8 @@ export const loginController: RequestHandler = asyncHandler(
           const token = await token_PASETO({ data: { user_id: user.data._id } }, "access");
           const tokenRefresh = await token_PASETO({ data: { user_id: user.data._id } }, "refresh");
 
-          res.cookie("access_token", token, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 1000 * 60 * 60 * 2 });
-          res.cookie("refresh_token", tokenRefresh, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 1000 * 60 * 60 * 24 * 30, });
+          res.cookie("__ESAA", token, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 1000 * 60 * 60 * 2 });
+          res.cookie("__ESRA", tokenRefresh, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 1000 * 60 * 60 * 24 * 30, });
           res.status(200).json({ code: 200, status: "OK", success: true, error: false, timestamp: new Date(), message: "User created successfully", data: token });
           return
      }

@@ -37,7 +37,7 @@ function uploadBuffer(buffer: Buffer, options: UploadImageOptions): Promise<Uplo
                     tags: options.tags,
                },
                (error, result) => {
-                    if (error) return reject(error);
+                    if (error) return reject(new Error(`Cloudinary upload stream failed: ${error.message || JSON.stringify(error)}`));
                     if (!result?.secure_url || !result?.public_id) {
                          return reject(new Error("Cloudinary upload failed: missing secure_url/public_id."));
                     }
@@ -60,17 +60,21 @@ export async function uploadImageToCloudinary(file: Buffer | string, options: Up
           return uploadBuffer(file, options);
      }
 
-     const result = await cloudinary.uploader.upload(file, {
-          folder: options.folder,
-          public_id: options.publicId,
-          overwrite: options.overwrite ?? true,
-          resource_type: "image",
-          tags: options.tags,
-     });
+     try {
+          const result = await cloudinary.uploader.upload(file, {
+               folder: options.folder,
+               public_id: options.publicId,
+               overwrite: options.overwrite ?? true,
+               resource_type: "image",
+               tags: options.tags,
+          });
 
-     if (!result?.secure_url || !result?.public_id) {
-          throw new Error("Cloudinary upload failed: missing secure_url/public_id.");
+          if (!result?.secure_url || !result?.public_id) {
+               throw new Error("Cloudinary upload failed: missing secure_url/public_id.");
+          }
+
+          return { url: result.secure_url, path: result.public_id };
+     } catch (error: any) {
+          throw new Error(`Cloudinary upload failed: ${error.message || JSON.stringify(error)}`);
      }
-
-     return { url: result.secure_url, path: result.public_id };
 }

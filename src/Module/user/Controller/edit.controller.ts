@@ -1,7 +1,6 @@
 import { asyncHandler } from "../../../Common/decorators/api-requesthandler";
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { uploadImageToCloudinary } from "../functions/cloudinary";
-import { UserModel } from "../Schema/User.schema";
 import fs from "fs";
 
 export const editController: RequestHandler = asyncHandler(
@@ -18,6 +17,7 @@ export const editController: RequestHandler = asyncHandler(
                     folder: "users_avatars",
                     publicId: `avatar_${req.user?._id || Date.now()}`,
                });
+               console.log(upload_cloudinary);
 
                updates.avatar = upload_cloudinary.url;
                if (fs.existsSync(req.file.path)) {
@@ -26,7 +26,7 @@ export const editController: RequestHandler = asyncHandler(
           }
 
           if (Object.keys(updates).length > 0) {
-               const updatedUser = await UserModel.findByIdAndUpdate(req.user?._id, updates, { new: true });
+               await req.user.updateOne(updates, { new: true });
 
                res.status(200).json({
                     code: 200,
@@ -35,7 +35,7 @@ export const editController: RequestHandler = asyncHandler(
                     error: false,
                     timestamp: new Date(),
                     message: "User profile updated successfully",
-                    data: updatedUser
+                    data: null
                });
                return;
           }
@@ -47,7 +47,7 @@ export const editController: RequestHandler = asyncHandler(
                error: false,
                timestamp: new Date(),
                message: "No changes to update",
-               data: req.user
+               data: null
           });
           return;
      }
