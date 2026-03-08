@@ -2,7 +2,7 @@
 
 Welcome to the **Authentication Module** for KeepITs API. This module is responsible for managing user identities, issuing secure tokens, and handling sessions robustly utilizing modern cryptographic standards (PASETO) instead of conventional JWTs.
 
-![Sequence Diagrams](https://res.cloudinary.com/cs74as-sjoaaaaaaaaaaaadsa/image/upload/v1772991519/User_hndd3h.png)
+![Sequence Diagrams](https://res.cloudinary.com/cs74as-sjoaaaaaaaaaaaadsa/image/upload/v1772991519/auth_cdqfzx)
 
 ## 📂 Directory Structure
 
