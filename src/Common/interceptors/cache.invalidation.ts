@@ -1,4 +1,4 @@
-import { cache_service } from "./cache.service.fun";
+import { cache_service } from "./cache-redis.service.fun";
 
 export async function invalidateSearchCache(): Promise<void> {
      try {

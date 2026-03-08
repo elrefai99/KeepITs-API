@@ -1,20 +1,16 @@
-import nodeCache from "node-cache";
+import redis from "../../core/redis.core";
 
 export class cache_service {
-     private cache: nodeCache = new nodeCache();
-     constructor() {
-          this.cache = new nodeCache({ stdTTL: 300, checkperiod: 60 });
-     }
      public async getData<T>(key: any): Promise<T | any> {
           const json = JSON.stringify(key)
-          const data = await this.cache.get(json)
+          const data = await redis.get(json)
           return data ? JSON.parse(data) : null
      }
 
      public async setExData<T>(key: any, value: any, expire?: number): Promise<T | any> {
           const json = JSON.stringify(key)
           const body = JSON.stringify(value)
-          await this.cache.set(json, body, expire)
+          await redis.setEx(json, expire, body)
      }
 
      public async setData<T>(key: any, value: any): Promise<T | any> {

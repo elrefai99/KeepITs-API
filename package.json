@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "dev": "concurrently \"NODE_ENV=development nodemon -L\" \"NODE_ENV=development npx ts-node ./src/Queue/index.ts\"",
-    "dev:windows": "concurrently \"nodemon -L\" \"npx ts-node ./src/Queue/index.ts\"",
+    "dev:local": "concurrently \"nodemon -L\" \"npx ts-node ./src/Queue/index.ts\"",
     "build": "tsc",
     "start": "concurrently \"node ./dist/app.js\" \"node ./dist/Queue/worker.js\"",
     "test": "jest --detectOpenHandles --runInBand",
@@ -67,6 +67,7 @@
     "concurrently": "^9.2.1",
     "node-cache": "^5.1.2",
     "nodemon": "^3.1.14",
+    "redis": "^5.11.0",
     "reflect-metadata": "^0.2.2",
     "socket.io": "^4.8.3",
     "ts-node": "^10.9.2",
