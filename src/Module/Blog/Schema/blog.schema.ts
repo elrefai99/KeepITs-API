@@ -17,6 +17,14 @@ const blogSchema = new Schema<IBlog>({
           type: String,
           required: true,
      },
+     coverImage: {
+          type: String,
+     },
+     coverImagePath: {
+          type: String,
+     },
+     contentImages: [{ type: String }],
+     contentImagePaths: [{ type: String }],
      userId: {
           type: Schema.Types.ObjectId,
           ref: "User",
