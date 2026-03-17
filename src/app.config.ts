@@ -4,11 +4,12 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 
+export const coreAccessLinks: string[] = [
+     process.env.SITE_URL_LOCALHOST as string,
+     process.env.SITE_URL_Live as string
+]
+
 export default (app: Application) => {
-     const coreAccessLinks: string[] = [
-          process.env.SITE_URL_LOCALHOST as string,
-          process.env.SITE_URL_Live as string
-     ]
      const corsOptions: object = {
           origin: (origin: any, callback: any) => {
                if (!origin || origin === "null" || coreAccessLinks.includes(origin)) {
