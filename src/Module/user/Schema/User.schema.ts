@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IUser } from "../@types";
-import { EUserStatus } from "../../../Common/enum";
+import { EUserStatus, EUserPlan } from "../../../Common/enum";
 import { v4 as uuidv4 } from "uuid"
 import bcrypt from "bcryptjs";
 
@@ -41,6 +41,14 @@ const userSchema = new Schema<IUser>({
           type: String,
           enum: EUserStatus,
           default: EUserStatus.INACTIVE
+     },
+     plan: {
+          type: String,
+          enum: EUserPlan,
+          default: EUserPlan.FREE,
+     },
+     planExpiry: {
+          type: String,
      },
 }, {
      timestamps: true,

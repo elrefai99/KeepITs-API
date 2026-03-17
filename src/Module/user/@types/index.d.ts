@@ -1,4 +1,6 @@
 import { Document } from "mongoose";
+import { EUserPlan } from "../../../Common/enum";
+
 export interface IUser extends Document {
      u_id: string
      email: string
@@ -8,6 +10,8 @@ export interface IUser extends Document {
      last_login: string
      username: string
      status: EUserStatus
+     plan: EUserPlan
+     planExpiry?: string
 
      comparePassword(candidatePassword: string): Promise<boolean>;
 }
